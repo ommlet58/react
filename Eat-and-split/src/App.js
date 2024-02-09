@@ -39,7 +39,7 @@ export default function App(){
  
  return(<div className="app">
     <div className="sidebar">
-    <FriendList friends={friends} onSelection={handleSelection}/>
+    <FriendList friends={friends} onSelection={handleSelection} selectedFriend={selectedFriend}/>
 
     {showAddFriend && <FormAddFriend onAddFriend={handleAddFriend}></FormAddFriend>}
 
@@ -49,17 +49,20 @@ export default function App(){
   </div>)
 }
 
-function FriendList({friends , onSelection}){
+function FriendList({friends , onSelection , selectedFriend}){
   
   return <ul>
     {friends.map((friend)=>
-    <Friend friend={friend} key={friend.id} onSelection={onSelection}></Friend>
+    <Friend friend={friend} key={friend.id} onSelection={onSelection} selectedFriend={selectedFriend}></Friend>
     )}
   </ul>
 }
 
-function Friend({friend , onSelection}){
-  return(<li>
+function Friend({friend , onSelection , selectedFriend}){
+  var isSelected = false;
+  if(selectedFriend) { isSelected = selectedFriend.id === friend.id} ;
+
+  return(<li className={isSelected? "selected":""}>
       <img src={friend.image} alt={friend.name}></img>
       <h3>{friend.name}</h3>
       {friend.balance<0 && (
@@ -79,7 +82,7 @@ function Friend({friend , onSelection}){
           You and Your {friend.name} are even
         </p>
       )}
-      <Button onClick={() => onSelection(friend)}>Select</Button>
+      <Button onClick={() => onSelection(friend)}>{isSelected? "Close":"Select"}</Button>
   </li>)
 }
 function Button({children,onClick}){
@@ -138,7 +141,7 @@ function FormSplitBill({selectedFriend}){
 
 </select>
 
-<Button>Add</Button>
+<Button>split the bill </Button>
 </form>
   
   )

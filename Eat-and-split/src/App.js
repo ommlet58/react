@@ -34,6 +34,7 @@ export default function App(){
 
  function handleSelection(friend){
   setSelectedFriend(friend);
+  console.log("he")
  }
  
  return(<div className="app">
@@ -42,13 +43,13 @@ export default function App(){
 
     {showAddFriend && <FormAddFriend onAddFriend={handleAddFriend}></FormAddFriend>}
 
-    <Button onclick={()=>setshowAddFriend(!showAddFriend)}>{showAddFriend?'Close':'Add Friend'}</Button>
+    <Button onClick={()=>setshowAddFriend(!showAddFriend)}>{showAddFriend?'Close':'Add Friend'}</Button>
     </div>
     {selectedFriend &&  <FormSplitBill/>}
   </div>)
 }
 
-function FriendList({friends,onSelection}){
+function FriendList({friends , onSelection}){
   
   return <ul>
     {friends.map((friend)=>
@@ -57,7 +58,7 @@ function FriendList({friends,onSelection}){
   </ul>
 }
 
-function Friend({friend,onSelection}){
+function Friend({friend , onSelection}){
   return(<li>
       <img src={friend.image} alt={friend.name}></img>
       <h3>{friend.name}</h3>
@@ -78,11 +79,11 @@ function Friend({friend,onSelection}){
           You and Your {friend.name} are even
         </p>
       )}
-      <Button onClick={()=>onSelection(friend)}>Select</Button>
+      <Button onClick={() => onSelection(friend)}>Select</Button>
   </li>)
 }
-function Button({children,onclick}){
-  return(<button className="button" onClick={onclick}>{children}</button>)
+function Button({children,onClick}){
+  return(<button className="button" onClick={onClick}>{children}</button>)
 }
 
 function FormAddFriend({onAddFriend}){

@@ -33,8 +33,8 @@ export default function App(){
  } 
 
  function handleSelection(friend){
-  setSelectedFriend(friend);
-  console.log("he")
+  setSelectedFriend((cur)=>cur?.id===friend.id? null: friend);
+  
  }
  
  return(<div className="app">
@@ -59,8 +59,7 @@ function FriendList({friends , onSelection , selectedFriend}){
 }
 
 function Friend({friend , onSelection , selectedFriend}){
-  var isSelected = false;
-  if(selectedFriend) { isSelected = selectedFriend.id === friend.id} ;
+  var  isSelected = selectedFriend?.id === friend.id ;
 
   return(<li className={isSelected? "selected":""}>
       <img src={friend.image} alt={friend.name}></img>

@@ -96,15 +96,16 @@ const KEY = "4ba289c9";
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
+  const query = "lolita"; 
 
-
-  useEffect(function(){
-    fetch(`http://omdbapi.com/?apikey=${KEY}&s=lolita
-    `)
-      .then((res) => res.json())
-      .then((data) => setMovies(data.Search));
-
-
+  useEffect( function (){
+    async function fetchMovies(){
+      const res = await  fetch(`http://omdbapi.com/?apikey=${KEY}&s=${query}
+      `);
+      const data = await res.json();
+      setMovies(data.Search);
+  }
+  fetchMovies();
   },[])
   
 

@@ -96,7 +96,7 @@ const KEY = "4ba289c9";
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
-  const query = "lolita"; 
+  const query = "ba"; 
   const [isLoading,setIsloading]=useState(false);
   const [error,setError]=useState("");
 
@@ -110,6 +110,8 @@ export default function App() {
       if(!res.ok ) {throw new Error("Somthing went wrong with fetching movies")};
 
       const data = await res.json();
+
+      if(data.Response === "False") throw new Error ("No resulte");
       setMovies(data.Search);
       
     } catch (err) {

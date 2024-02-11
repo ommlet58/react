@@ -41,7 +41,7 @@ const tempWatchedData = [
     Year: "1985",
     Poster:
       "https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
-    runtime: 116,
+      runtime: 116,
     imdbRating: 8.5,
     userRating: 9,
   },
@@ -49,10 +49,10 @@ const tempWatchedData = [
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
-
-function NavBar({ children }) {
-  return (
-    <nav className="nav-bar">
+  
+  function NavBar({ children }) {
+    return (
+      <nav className="nav-bar">
       <Logo></Logo>
       {children}
     </nav>
@@ -67,22 +67,21 @@ function Logo() {
     </div>
   );
 }
-function Search() {
-  const [query, setQuery] = useState("");
+function Search({query,setQuery}) {
   return (
     <input
-      className="search"
-      type="text"
-      placeholder="Search movies..."
-      value={query}
-      onChange={(e) => setQuery(e.target.value)}
+    className="search"
+    type="text"
+    placeholder="Search movies..."
+    value={query}
+    onChange={(e) => setQuery(e.target.value)}
     />
-  );
-}
-
-function NumResults({ movies }) {
-  return (
-    <p className="num-results">
+    );
+  }
+  
+  function NumResults({ movies }) {
+    return (
+      <p className="num-results">
       Found <strong>{movies.length}</strong> results
     </p>
   );
@@ -96,48 +95,55 @@ const KEY = "4ba289c9";
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
-  const query = "ba"; 
-  const [isLoading,setIsloading]=useState(false);
-  const [error,setError]=useState("");
+  const tempQuery = "superman";
+  const [isLoading, setIsloading] = useState(false);
+  const [error, setError] = useState("");
+  const [query, setQuery] = useState("");
+  
+  useEffect(function () {
+    async function fetchMovies() {
+      try {
+        setError("");
+        setIsloading(true);
+        const res = await fetch(`http://omdbapi.com/?apikey=${KEY}&s=${query}
+        `);
+        
+        if (!res.ok) {
+          throw new Error("Somthing went wrong with fetching movies");
+        }
 
-  useEffect( function (){
-    async function fetchMovies(){
-    try{
-      setIsloading(true);
-      const res = await  fetch(`http://omdbapi.com/?apikey=${KEY}&s=${query}
-      `);
+        const data = await res.json();
 
-      if(!res.ok ) {throw new Error("Somthing went wrong with fetching movies")};
-
-      const data = await res.json();
-
-      if(data.Response === "False") throw new Error ("No resulte");
-      setMovies(data.Search);
-      
-    } catch (err) {
+        if (data.Response === "False") throw new Error("No resulte");
+     
+        setMovies(data.Search);
+      } catch (err) {
         console.error(err.message);
         setError(err.message);
       } finally {
         setIsloading(false);
-        
+      }
     }
-  }
-  fetchMovies();
-  },[])
-  
 
+    if(query.length < 3){
+      setMovies([]);
+      setError("");
+      return ;
+    }
+    fetchMovies();
+  }, [query]);
+  
   return (
     <>
       <NavBar>
-        <Search></Search>
+        <Search  query={query} setQuery={setQuery}></Search>
         <NumResults movies={movies}></NumResults>
       </NavBar>
       <Main>
         <Box>
-         {
-           error &&   <ErrorMessage message={error}/>}
+          {error && <ErrorMessage message={error} />}
           {!isLoading && !error && <MovieList movies={movies}> </MovieList>}
-          { isLoading  && <Loader></Loader> }
+          {isLoading && <Loader></Loader>}
         </Box>
         <Box>
           <WatchedSummery watched={watched}></WatchedSummery>
@@ -149,19 +155,17 @@ export default function App() {
   );
 }
 
-
-function Loader(){
-  return <p className="loader">Loading...</p>
+function Loader() {
+  return <p className="loader">Loading...</p>;
 }
 
-function ErrorMessage({message}){
-
-  return(
+function ErrorMessage({ message }) {
+  return (
     <p className="error">
-      <span>⚠️</span>{message}
+      <span>⚠️</span>
+      {message}
     </p>
-
-  )
+  );
 }
 
 function Box({ children }) {

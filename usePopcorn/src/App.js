@@ -97,13 +97,16 @@ export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
   const query = "lolita"; 
+  const [isLoading,setIsloading]=useState(false);
 
   useEffect( function (){
     async function fetchMovies(){
+      setIsloading(true);
       const res = await  fetch(`http://omdbapi.com/?apikey=${KEY}&s=${query}
       `);
       const data = await res.json();
       setMovies(data.Search);
+      setIsloading(false);
   }
   fetchMovies();
   },[])
@@ -117,7 +120,7 @@ export default function App() {
       </NavBar>
       <Main>
         <Box>
-          <MovieList movies={movies}></MovieList>
+          { isLoading ? <Loader /> :  <MovieList movies={movies}></MovieList>}
         </Box>
         <Box>
           <WatchedSummery watched={watched}></WatchedSummery>
@@ -127,6 +130,11 @@ export default function App() {
       </Main>
     </>
   );
+}
+
+
+function Loader(){
+  return <p className="loader">Loading...</p>
 }
 
 function Box({ children }) {

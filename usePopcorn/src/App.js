@@ -120,12 +120,14 @@ function handleDeletWatched(id){
 
   useEffect(
     function () {
+      const controller= new AbortController;
+      
       async function fetchMovies() {
         try {
           setError("");
           setIsloading(true);
           const res = await fetch(`http://omdbapi.com/?apikey=${KEY}&s=${query}
-        `);
+        `,{signal: controller.signal});
 
           if (!res.ok) {
             throw new Error("Somthing went wrong with fetching movies");
@@ -150,6 +152,10 @@ function handleDeletWatched(id){
         return;
       }
       fetchMovies();
+
+      return function (){
+        controller.abort();
+            }
     },
     [query]
   );

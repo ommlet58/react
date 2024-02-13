@@ -138,9 +138,14 @@ function handleDeletWatched(id){
           if (data.Response === "False") throw new Error("No resulte");
 
           setMovies(data.Search);
+          setError("");
         } catch (err) {
           console.error(err.message);
-          setError(err.message);
+          
+          if(err.name !== "AbortError"){
+            
+            setError(err.message);
+          }
         } finally {
           setIsloading(false);
         }

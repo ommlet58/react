@@ -159,11 +159,14 @@ function handleDeletWatched(id){
       fetchMovies();
 
       return function (){
-        controller.abort();
+        controller.abort(); 
             }
     },
     [query]
   );
+
+
+
 
   return (
     <>
@@ -346,6 +349,15 @@ return function (){
 
 },[title ])
 
+
+useEffect(function(){
+  document.addEventListener("keydown", function(e){
+    if(e.code === "Escape"){
+      onCloseMovie();
+    }
+  })
+
+},[onCloseMovie])
 
   return (
     <div className="details">

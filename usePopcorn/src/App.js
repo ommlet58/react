@@ -120,7 +120,7 @@ function handleDeletWatched(id){
 
   useEffect(
     function () {
-      const controller= new AbortController;
+      const controller= new AbortController();
       
       async function fetchMovies() {
         try {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import StarRating from "./StarRating";
 
 
@@ -23,6 +23,24 @@ function Logo() {
   );
 }
 function Search({ query, setQuery }) {
+  const inputEl = useRef(null);
+
+  useEffect(()=>{
+    function callback(e){
+      if (document.activeElement === inputEl.current) return
+      if(e.code === "Enter"){
+
+        inputEl.current.focus();
+        setQuery(" ");
+      }
+
+    }
+    document.addEventListener("keydown",callback);
+
+    return document.addEventListener('keydown',callback);
+  },[setQuery])
+
+
   return (
     <input
       className="search"
@@ -30,6 +48,7 @@ function Search({ query, setQuery }) {
       placeholder="Search movies..."
       value={query}
       onChange={(e) => setQuery(e.target.value)}
+      ref={inputEl}
     />
   );
 }
@@ -54,8 +73,8 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
   const [watched, setWatched] = useState(function(){
-    const storedvalue = localStorage.getItem('watched');
-    return storedvalue;
+  const storedvalue = localStorage.getItem('watched');
+    return JSON.parse(storedvalue);
   });
 
   function handleSelectedId(id) {
@@ -69,6 +88,7 @@ export default function App() {
 function handleAddWatched(movie){
   setWatched((watched)=>[...watched, movie]);
 
+
 }
 
 function handleDeletWatched(id){
@@ -77,8 +97,9 @@ function handleDeletWatched(id){
 
 
 
-useEffect(function(){
-  localStorage.setItem('watched',JSON.stringify([watched]));
+useEffect(
+  function(){
+  localStorage.setItem('watched',JSON.stringify(watched));
 },[watched])
 
   useEffect(

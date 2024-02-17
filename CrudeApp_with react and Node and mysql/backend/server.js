@@ -46,13 +46,39 @@ app.put('/update/:id', (req,res)=>{
     ]
     const id = req.params.id;
 
-    db.query(sql,[...values, id],(err,data)=>{
+    db.query(sql, [...values, id],(err,data)=>{
         if(err) return res.json('Error');
         return res.json(data);
     })
   })
  
+  app.put('/update/:id', (req,res)=>{
+    const sql = "UPDATE student SET `Name` = ?, `Email` = ? WHERE ID = ?";
 
+    const values = [
+        req.body.name,
+        req.body.email,
+    ]
+    const id = req.params.id;
+
+    db.query(sql, [...values, id],(err,data)=>{
+        if(err) return res.json('Error');
+        return res.json(data);
+    })
+  })
+
+  app.delete('/student/:id', (req,res)=>{
+    const sql = "DELETE FROM `student` WHERE `student`.`ID` = ?";
+     
+
+    const id = req.params.id;
+
+    db.query(sql, [id],(err,data)=>{
+        if(err) return res.json('Error');
+        return res.json(data);
+    })
+  })
+ 
 
 app.listen(8081,()=>{
     console.log("lestening");

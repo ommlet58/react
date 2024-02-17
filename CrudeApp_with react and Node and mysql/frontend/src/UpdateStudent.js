@@ -1,18 +1,23 @@
-import  axios  from "axios";
+import axios from "axios";
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function UpdateStudent() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
+  const { id } = useParams();
 
   function handleSubmit(event) {
     event.preventDefault();
-    axios.post("http://localhost:8081/create", {name,email }).then((res) => {
-      console.log(res);
-      navigate("/");
-    }).catch(err => console.log(err));
+    axios
+      .put("http://localhost:8081/update/"+id, { name, email })
+      .then((res) => {
+        console.log(res);
+        navigate("/");
+      })
+      .catch((err) => console.log(err));
   }
   return (
     <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
@@ -37,7 +42,7 @@ function UpdateStudent() {
               onChange={(e) => setEmail(e.target.value)}
             ></input>
           </div>
-          <button className="btn btn-success">Submit</button>
+          <button className="btn btn-success">Update</button>
         </form>
       </div>
     </div>

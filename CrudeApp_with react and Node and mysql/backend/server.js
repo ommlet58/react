@@ -37,6 +37,21 @@ app.post('/create', (req,res)=>{
     })
   })
  
+app.put('/update/:id', (req,res)=>{
+    const sql = "UPDATE student SET `Name` = ?, `Email` = ? WHERE ID = ?";
+
+    const values = [
+        req.body.name,
+        req.body.email,
+    ]
+    const id = req.params.id;
+
+    db.query(sql,[...values, id],(err,data)=>{
+        if(err) return res.json('Error');
+        return res.json(data);
+    })
+  })
+ 
 
 
 app.listen(8081,()=>{

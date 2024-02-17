@@ -1,4 +1,4 @@
-import { Axios } from "axios";
+import  axios  from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -8,8 +8,8 @@ function CreatStudent() {
   const navigate = useNavigate();
 
   function handleSubmit(event) {
-    event.perventDefault();
-    Axios.post("http://localhost:8081/create", { name, email }).then((res) => {
+    event.preventDefault();
+    axios.post("http://localhost:8081/create", { name, email }).then((res) => {
       console.log(res);
       navigate("/");
     }).catch(err => console.log(err));

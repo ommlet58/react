@@ -2,7 +2,7 @@ import  axios  from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function CreatStudent() {
+function UpdateStudent() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ function CreatStudent() {
     <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
       <div className="w-50 bg-white rounded p-3">
         <form onSubmit={handleSubmit}>
-          <h1>Add Student</h1>
+          <h1>Update Student</h1>
           <div className="mb-2">
             <label htmlFor="">Name</label>
             <input
@@ -44,4 +44,4 @@ function CreatStudent() {
   );
 }
 
-export default CreatStudent;
+export default UpdateStudent;

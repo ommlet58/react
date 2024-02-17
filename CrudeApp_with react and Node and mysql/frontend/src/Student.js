@@ -18,6 +18,7 @@ function Student() {
             <tr>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -26,6 +27,10 @@ function Student() {
                     <tr key={i}>
                         <td>{data.Name}</td>
                         <td>{data.Email}</td>
+                        <td>
+                            <button className="btn btn-primary">Update</button>
+                            <button className="btn btn-danger ms-2">Delet</button>
+                        </td>
                     </tr>
                 ))
             }

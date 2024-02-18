@@ -8,13 +8,17 @@ function Student() {
       .get("http://localhost:8081/")
       .then((res) => setStudent(res.data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [student]);
 
 
   const handleDeletStudent  = async (id) =>{
     try{
-      await axios.delete("http://localhost:8081/student/"+id)
-      window.location.reload();
+      //await axios.delete("http://localhost:8081/student/"+id)
+     // window.location.reload();
+     await axios.delete(`http://localhost:8081/student/${id}`);
+     setStudent((prevStudents) => prevStudents.filter((student) => student.id !== id));
+
+     console.log(`Student with ID ${id} deleted successfully`);
     }catch(err){
       console.log(err);
     }

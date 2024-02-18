@@ -80,6 +80,26 @@ app.put('/update/:id', (req,res)=>{
   })
  
 
+//sign up regestration
+
+app.post('/signup',(req,res)=>{
+    const sql = "INSERT INTO login ( `name`, `Email`, `password`) VALUES (?)";
+
+    const values = [
+        req.body.name,
+        req.body.email,
+        req.body.password 
+    ]
+
+    db.query(sql,[values],(err , data) => {
+        if(err){
+            return res.json("error");
+        }
+        return res.json(data);
+    })
+})
+
+
 app.listen(8081,()=>{
     console.log("lestening");
 })

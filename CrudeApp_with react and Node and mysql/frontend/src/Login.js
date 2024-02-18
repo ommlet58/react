@@ -22,7 +22,7 @@ function Login() {
             axios.post("http://localhost:8081/login", values)
               .then((res) => {
                 if(res.data === "Succes"){
-                    navigate("/create");  
+                    navigate("/student");  
 
                 }else{
                     alert("No record existed");

@@ -15,7 +15,7 @@ function UpdateStudent() {
       .put("http://localhost:8081/update/"+id, { name, email })
       .then((res) => {
         console.log(res);
-        navigate("/");
+        navigate("/student");
       })
       .catch((err) => console.log(err));
   }

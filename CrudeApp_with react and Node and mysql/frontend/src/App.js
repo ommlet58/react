@@ -7,19 +7,19 @@ import Login from './Login';
 import SignUp from './SignUp';
 
 
-function App() {  
+function App()  {  
   return (
     //<div className="App">
       //<BrowserRouter>
       //<Routes>
-       // <Route path='/' element={<Student></Student>}></Route>
-       // <Route path='/update/:id' element={<UpdateStudent></UpdateStudent>}></Route>
-       // </Routes>
-       // </BrowserRouter>
-       //</div>
-       <BrowserRouter>
+      // </Routes>
+      // </BrowserRouter>
+      //</div>
+      <BrowserRouter>
       <Routes>
         <Route path='/' element={<Login></Login>}></Route>
+        <Route path='/student' element={<Student></Student>}></Route>
+        <Route path='student/update/:id' element={<UpdateStudent></UpdateStudent>}></Route>
         <Route path='/create' element={<CreatStudent></CreatStudent>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
       </Routes>

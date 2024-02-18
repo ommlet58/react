@@ -11,7 +11,7 @@ function CreatStudent() {
     event.preventDefault();
     axios.post("http://localhost:8081/create", {name,email }).then((res) => {
       console.log(res);
-      navigate("/");
+      navigate("/student");
     }).catch(err => console.log(err));
   }
   return (

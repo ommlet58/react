@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import validation from './LoginValidation'; 
-
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 function Login() {
     const [values,setValues]=useState({
@@ -10,12 +11,25 @@ function Login() {
     })
 
     const [errors,setErrors]=useState({});
-
+    const navigate = useNavigate();
     const handleInput = (event)=>{
         setValues(prev => ({...prev, [event.target.name]: [event.target.value]}))}
     const handleSubmit = (event) => {
         event.preventDefault();
         setErrors(validation(values));
+
+        if (errors.email === "" && errors.password === "") {
+            axios.post("http://localhost:8081/login", values)
+              .then((res) => {
+                if(res.data === "Succes"){
+                    navigate("/create");  
+
+                }else{
+                    alert("No record existed");
+                }
+              })
+              .catch((err) => console.log(err));
+          }
     }
     
   return (

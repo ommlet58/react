@@ -13,14 +13,14 @@ function App() {
       //<BrowserRouter>
       //<Routes>
        // <Route path='/' element={<Student></Student>}></Route>
-       // <Route path='/create' element={<CreatStudent></CreatStudent>}></Route>
        // <Route path='/update/:id' element={<UpdateStudent></UpdateStudent>}></Route>
-     // </Routes>
-     // </BrowserRouter>
-    //</div>
-    <BrowserRouter>
+       // </Routes>
+       // </BrowserRouter>
+       //</div>
+       <BrowserRouter>
       <Routes>
         <Route path='/' element={<Login></Login>}></Route>
+        <Route path='/create' element={<CreatStudent></CreatStudent>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
       </Routes>
     </BrowserRouter>

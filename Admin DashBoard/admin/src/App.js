@@ -6,8 +6,8 @@ import { Routes, Route } from "react-router-dom";
 import Sidebar from "./scenes/global/Sidebar";
 import Team from "./scenes/team";
 import Contacts from "./scenes/contacts";
-/*import Invoices from "./scenes/invoices";
-import Bar from "./scenes/bar";
+import Invoices from "./scenes/invoices";
+/*import Bar from "./scenes/bar";
 import Form from "./scenes/form";
 import Line from "./scenes/line";
 import Pie from "./scenes/pie";
@@ -31,8 +31,8 @@ function App() {
                    <Route path="/" element={<DashBoard></DashBoard>}></Route>
                    <Route path="/team" element={<Team></Team>}></Route>
                   <Route path="/contacts" element={<Contacts></Contacts>}></Route>
-                   {/* <Route path="/invoices" element={<Invoices></Invoices>}></Route>
-                   <Route path="/form" element={<Form></Form>}></Route>
+                    <Route path="/invoices" element={<Invoices></Invoices>}></Route>
+                   {/*<Route path="/form" element={<Form></Form>}></Route>
                    <Route path="/bar" element={<Bar></Bar>}></Route>
                    <Route path="/pie" element={<Pie></Pie>}></Route>
                    <Route path="/line" element={<Line></Line>}></Route>

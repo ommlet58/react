@@ -8,12 +8,12 @@ import Team from "./scenes/team";
 import Contacts from "./scenes/contacts";
 import Invoices from "./scenes/invoices";
 import Form from "./scenes/form";
+import Calendar from "./scenes/calendar";
 /*import Bar from "./scenes/bar";
 import Line from "./scenes/line";
 import Pie from "./scenes/pie";
 import FAQ from "./scenes/faq";
-import Geography from "./scenes/geography";
-import Calendar from "./scenes/calendar";*/
+import Geography from "./scenes/geography";*/
 
 function App() {
   const [theme, colorMode]= useMode();
@@ -33,11 +33,11 @@ function App() {
                   <Route path="/contacts" element={<Contacts></Contacts>}></Route>
                     <Route path="/invoices" element={<Invoices></Invoices>}></Route>
                   <Route path="/form" element={<Form></Form>}></Route>
+                  <Route path="/calendar" element={<Calendar></Calendar>}></Route>
                    {/* <Route path="/bar" element={<Bar></Bar>}></Route>
                    <Route path="/pie" element={<Pie></Pie>}></Route>
                    <Route path="/line" element={<Line></Line>}></Route>
                    <Route path="/geography" element={<Geography></Geography>}></Route>
-                   <Route path="/calendar" element={<Calendar></Calendar>}></Route>
   */}
                    </Routes>
             </main>

@@ -1,5 +1,8 @@
 import express from "express";
 import authRouts from "./routes/auth.js";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+
 //import userRouts from "./routes/users.js";
 //import postRouts from "./routes/posts.js";
 //import likeRouts from "./routes/likes.js";
@@ -7,6 +10,9 @@ import authRouts from "./routes/auth.js";
 const app = express();
 
 app.use(express.json());
+app.use(cors());
+app.use(cookieParser);
+
 
 app.use("/api/auth",authRouts);
 //app.use("/api/users",userRouts);

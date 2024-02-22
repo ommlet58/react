@@ -4,7 +4,9 @@ import userRouts from "./routes/users.js";
 import postRouts from "./routes/posts.js";
 import likeRouts from "./routes/likes.js";
 import commentRouts from "./routes/comments.js";
-const app = Express();
+const app = express();
+
+app.use(express.json());
 
 app.use("/api/auth",authRouts);
 app.use("/api/users",userRouts);

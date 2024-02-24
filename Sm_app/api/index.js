@@ -7,10 +7,17 @@ import cors from "cors";
 //import postRouts from "./routes/posts.js";
 //import likeRouts from "./routes/likes.js";
 //import commentRouts from "./routes/comments.js";
+
 const app = express();
+app.use((req,res,next)=>{
+    res.header("Access-Control-Allow-Credentials",true)
+    next();
+})
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+     origin:"http://localhost:3000"}
+));
 app.use(cookieParser());
 
 

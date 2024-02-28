@@ -32,6 +32,8 @@ const mutation = useMutation({
     let imgUrl = "";
     if(file) imgUrl = await upload();
     mutation.mutate({desc,img: imgUrl});
+    setDesc('');
+    setFile(null);
   }
 
   const {currentUser} = useContext(AuthContext)
@@ -51,12 +53,18 @@ const upload = async ()=>{
   return (
     <div className="share">
       <div className="container">
+      
         <div className="top">
+          <div className="left">
           <img
             src={currentUser.profilePic}
             alt=""
           />
-          <input type="text" placeholder={`What's on your mind ${currentUser.name}?`} onChange={(e)=>setDesc(e.target.value)} />
+          <input type="text" value={desc} placeholder={`What's on your mind ${currentUser.name}?`} onChange={(e)=>setDesc(e.target.value)} />
+          </div>
+          <div className="right">
+            {file && <img className="file" src={URL.createObjectURL(file)}></img>}
+          </div>
         </div>
         <hr />
         <div className="bottom">

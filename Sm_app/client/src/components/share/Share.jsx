@@ -27,12 +27,27 @@ const mutation = useMutation({
 
 
 
-  const handleClick = e =>{
+  const handleClick = async (e)=>{
     e.preventDefault();
-    mutation.mutate({desc});
+    let imgUrl = "";
+    if(file) imgUrl = await upload();
+    mutation.mutate({desc,img: imgUrl});
   }
 
   const {currentUser} = useContext(AuthContext)
+
+const upload = async ()=>{
+  try{
+    const formData= new FormData();
+    formData.append("file",file);
+    const res = await makeRequest.post("/upload",formData);
+    return res.data;
+  }catch(err){
+    console.log(err)
+  }
+}
+
+
   return (
     <div className="share">
       <div className="container">

@@ -16,7 +16,7 @@ const Posts = () => {
     },
   });
 
-console.log(data);
+
   
   return <div className="posts">
     {error ? "Somthing went wrong": (isLoading? "loading" :data.map(post=>(

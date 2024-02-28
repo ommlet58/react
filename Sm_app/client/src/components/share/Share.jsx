@@ -63,7 +63,7 @@ const upload = async ()=>{
           <input type="text" value={desc} placeholder={`What's on your mind ${currentUser.name}?`} onChange={(e)=>setDesc(e.target.value)} />
           </div>
           <div className="right">
-            {file && <img className="file" src={URL.createObjectURL(file)}></img>}
+            {file && <img className="file" alt="" src={URL.createObjectURL(file)}></img>}
           </div>
         </div>
         <hr />

@@ -34,7 +34,22 @@ const Post = ({ post }) => {
     },
   });
 
-console.log(data);
+  const queryClient = useQueryClient();
+
+const mutation = useMutation({
+  mutationFn: (liked)=>{
+    if(liked) return makeRequest.delete('/likes?postId',post.id)
+         return  makeRequest.post('/likes',{postid:post.id})
+  },
+  onSuccess: () => {
+    // Invalidate and refetch
+    queryClient.refetchQueries('likes');
+  },
+})
+
+  const handlike = ()=>{
+    mutation.mutate(data.includes(currentUser.id))
+  }
   return (
     <div className="post">
       <div className="container">
@@ -60,7 +75,7 @@ console.log(data);
         </div>
         <div className="info">
           <div className="item">
-            { data? ( data.includes(currentUser.id) ? <FavoriteOutlinedIcon style={{color:'red'}} /> : <FavoriteBorderOutlinedIcon />) :<FavoriteBorderOutlinedIcon />
+            { !isLoading? ( data.includes(currentUser.id) ? <FavoriteOutlinedIcon style={{color:'red'}} onClick={handlike} /> : <FavoriteBorderOutlinedIcon onClick={handlike} />) :"Loading"
             }
             {data ? data.length : "0 "
             } Likes

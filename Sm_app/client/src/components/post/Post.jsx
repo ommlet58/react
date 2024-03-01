@@ -33,23 +33,28 @@ const Post = ({ post }) => {
       }
     },
   });
-
+  
   const queryClient = useQueryClient();
-
-const mutation = useMutation({
-  mutationFn: (liked)=>{
-    if(liked) return makeRequest.delete('/likes?postId',post.id)
-         return  makeRequest.post('/likes',{postid:post.id})
-  },
-  onSuccess: () => {
-    // Invalidate and refetch
-    queryClient.refetchQueries('likes');
-  },
-})
-
-  const handlike = ()=>{
-    mutation.mutate(data.includes(currentUser.id))
-  }
+  
+  const mutation = useMutation({
+    mutationFn: (liked) => {
+      if (liked) {
+        return makeRequest.delete(`/likes?postId=${post.id}`);
+      }
+      return makeRequest.post('/likes', { postId: post.id });
+    },
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.refetchQueries(['likes', { postId: post.id }]);
+    },
+  });
+  
+  const handlike = () => {
+    mutation.mutate(data.includes(currentUser.id));
+  };
+  
+  
+  
   return (
     <div className="post">
       <div className="container">
@@ -58,7 +63,7 @@ const mutation = useMutation({
             <img src={post.profilePic} alt="" />
             <div className="details">
               <Link
-                to={`/profile/${post.userId}`}
+                to={`/profile/${post.userid}`}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
                 <span className="name">{post.name}</span>

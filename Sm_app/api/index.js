@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import multer from "multer";
 
-//import userRouts from "./routes/users.js";
+import userRouts from "./routes/users.js";
 import postRouts from "./routes/posts.js";
 import likeRouts from "./routes/likes.js";
 import commentRouts from "./routes/comments.js";
@@ -39,7 +39,7 @@ const storage = multer.diskStorage({
   })
 
 app.use("/api/auth",authRouts);
-//app.use("/api/users",userRouts);
+app.use("/api/users",userRouts);
 app.use("/api/posts",postRouts);
 app.use("/api/comments",commentRouts);
 app.use("/api/likes",likeRouts);

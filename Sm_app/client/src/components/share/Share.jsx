@@ -8,12 +8,12 @@ import {  useMutation, useQueryClient } from '@tanstack/react-query';
 import { makeRequest } from "../../axios";
 
 const Share = () => {
- const queryClient = useQueryClient();
   const[file,setFile]=useState(null);
   const[desc,setDesc]=useState("");
-
-
-
+  
+  
+  
+  const queryClient = useQueryClient();
 
 const mutation = useMutation({
   mutationFn: (newPost)=>{

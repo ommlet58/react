@@ -8,6 +8,7 @@ import userRouts from "./routes/users.js";
 import postRouts from "./routes/posts.js";
 import likeRouts from "./routes/likes.js";
 import commentRouts from "./routes/comments.js";
+import relationshipRouts from "./routes/relationships.js";
 
 const app = express();
 app.use((req,res,next)=>{
@@ -43,6 +44,7 @@ app.use("/api/users",userRouts);
 app.use("/api/posts",postRouts);
 app.use("/api/comments",commentRouts);
 app.use("/api/likes",likeRouts);
+app.use("/api/relationships",relationshipRouts);
 
 
 

@@ -12,11 +12,19 @@ import Posts from "../../components/posts/Posts"
 import {useQuery } from '@tanstack/react-query'
 import {makeRequest} from "../../axios";
 import {useLocation} from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../context/authContext";
 
 
 const Profile = () => {
 
-  const userId = useLocation().pathname.split("/")[2];
+  const userId = parseInt(useLocation().pathname.split("/")[2]);
+  const {currentUser}= useContext(AuthContext);
+
+const handleFollow = () =>{
+
+
+}
 
   const { isLoading, error, data } = useQuery({
     queryKey: ['user'],
@@ -30,11 +38,30 @@ const Profile = () => {
     },
   });
 
-  console.log(data);
+  
+  const { isLoading:rlIsLoading, data:relationshipdata } = useQuery({
+    queryKey: ['relationship'],
+    queryFn: async () => {
+      try {
+        const response = await makeRequest.get("/relationships?followedUserId="+userId);
+        return response.data;
+      } catch (error) {
+        throw error;
+      }
+    },
+  });
 
+  console.log(relationshipdata);
+
+  
   if (isLoading) {
     return <p>Loading...</p>;
   }
+  if (rlIsLoading) {
+    return <p>Loading...</p>;
+  }
+
+
 
   return (
     <div className="profile">
@@ -81,7 +108,8 @@ const Profile = () => {
                 <span>{data.website}</span>
               </div>
             </div>
-            <button>follow</button>
+            {userId === currentUser.id ?( <button>update</button>) 
+            :  <button  onClick={handleFollow}>{relationshipdata.includes(currentUser.id)? "following":"follow"}</button>}
           </div>
           <div className="right">
             <EmailOutlinedIcon />

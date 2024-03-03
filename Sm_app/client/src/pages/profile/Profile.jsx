@@ -14,6 +14,7 @@ import {makeRequest} from "../../axios";
 import {useLocation} from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/authContext";
+import {  useMutation, useQueryClient } from '@tanstack/react-query';
 
 
 const Profile = () => {
@@ -21,10 +22,7 @@ const Profile = () => {
   const userId = parseInt(useLocation().pathname.split("/")[2]);
   const {currentUser}= useContext(AuthContext);
 
-const handleFollow = () =>{
 
-
-}
 
   const { isLoading, error, data } = useQuery({
     queryKey: ['user'],
@@ -52,6 +50,27 @@ const handleFollow = () =>{
   });
 
   console.log(relationshipdata);
+
+
+  const queryClient = useQueryClient();
+  
+  const mutation = useMutation({
+    mutationFn: (following) => {
+      if (following) {
+        return makeRequest.delete(`relationships/?userId=${userId}`);
+      }
+      return makeRequest.post('/relationships', { userId });
+    },
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.refetchQueries(['relationship', { userId }]);
+    },
+  });
+  
+  const handleFollow = () => {
+    mutation.mutate(relationshipdata.includes(currentUser.id));
+  };
+  
 
   
   if (isLoading) {
@@ -116,7 +135,7 @@ const handleFollow = () =>{
             <MoreVertIcon />
           </div>
         </div>
-      <Posts/>
+      <Posts  userId={userId}/>
       </div>
     </div>
   );

@@ -23,16 +23,16 @@ export const getRelationships = (req,res)=>{
             
             
             
-                const q = "INSERT INTO likes (`userid`,`postId`) VALUES (?)"
+                const q = "INSERT INTO relashionships (`followerUserId`, `followedUserId`) VALUES (?)"
             
                 const values =[
                     userInfo.id,
-                    req.body.postId
+                    req.body.userId
                 ]
             
                 db.query(q,[values],(err, data)=>{
                     if(err) return res.status(500).json(err);
-                    return res.status(200).json("Post has been liked");
+                    return res.status(200).json("Following");
                 })
             
             })
@@ -54,13 +54,13 @@ export const deleteRelationship = (req,res)=>{
     
     
     
-        const q = "DELETE FROM likes WHERE `userid`= ? AND `postid`= ?"
+        const q = "DELETE FROM relashionships WHERE `followerUserId`= ? AND `followedUserId`= ?"
     
         
     
-        db.query(q,[userInfo.id, req.query.postId],(err, data)=>{
+        db.query(q,[userInfo.id, req.query.userId],(err, data)=>{
             if(err) return res.status(500).json(err);
-            return res.status(200).json("Post has been desliked");
+            return res.status(200).json("Unfollow");
         })
     
     })

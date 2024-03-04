@@ -37,7 +37,7 @@ const Update = ({setOpenUpdate,  user}) => {
 
     const handleChange = (e)=>{
     setTexts((prev)=>(
-        {...prev ,[e.target.name] : [e.target.value]}
+        {...prev ,[e.target.name] : e.target.value}
     ))
 }
 
@@ -57,11 +57,11 @@ console.log(user);
 
   const handleClick = async (e)=>{
     e.preventDefault();
-    let coverUrl = user.coverPic;
-    let profileUrl = user.profilePic;
+    let coverUrl ;
+    let profileUrl ;
 
-    coverUrl = cover &&  await upload(cover);
-    profileUrl = profile &&  await upload(profile);
+    coverUrl = cover ?   await upload(cover) : user.coverPic;
+    profileUrl = profile ? await upload(profile): user.profilePic;
     mutation.mutate({...texts , coverPic : coverUrl , profilePic: profileUrl});
     setOpenUpdate(false);
   }
@@ -71,8 +71,8 @@ console.log(user);
   return (
     <div className='update'>Update
     <form>
-        <input type="file" />
-        <input type="file" />
+        <input type="file" onChange={e=>setCover(e.target.files[0])} />
+        <input type="file" onChange={e=>setProfile(e.target.files[0])} />
         <input type="text" name="name" onChange={handleChange} />
         <input type="text" name="city" onChange={handleChange} />
         <input type="text" name="website" onChange={handleChange} />

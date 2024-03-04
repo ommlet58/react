@@ -87,12 +87,12 @@ const Profile = () => {
     <div className="profile">
       <div className="images">
         <img
-          src={data.coverPic}
+          src={"/uplead/"+data.coverPic}
           alt=""
           className="cover"
         />
         <img
-          src={data.profilePic}
+          src={"/uplead/"+data.profilePic}
           alt=""
           className="profilePic"
         />

@@ -16,6 +16,7 @@ import { AuthContext } from "../../context/authContext";
 
 const Post = ({ post }) => {
   const [commentOpen, setCommentOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const {currentUser} = useContext(AuthContext);
   
@@ -48,11 +49,24 @@ const Post = ({ post }) => {
       queryClient.refetchQueries(['likes', { postId: post.id }]);
     },
   });
+  const deleteMutation = useMutation({
+    mutationFn: (postId) => {
+      
+      return makeRequest.delete('/posts/' + postId);
+    },
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.refetchQueries(['posts']);
+    },
+  });
   
   const handlike = () => {
     mutation.mutate(data.includes(currentUser.id));
   };
   
+  const handleDelete = ()=> {
+    deleteMutation.mutate(post.id);
+  }
   
   
   return (
@@ -71,7 +85,10 @@ const Post = ({ post }) => {
               <span className="date">{moment(post.createdAt).fromNow()}</span>
             </div>
           </div>
-          <MoreHorizIcon />
+          <MoreHorizIcon onClick={()=>setMenuOpen(!menuOpen)} />
+        {
+          (menuOpen && post.userid === currentUser.id) && <button onClick={handleDelete} >delete</button>
+        }
         </div>
         <div className="content">
           <p>{post.desc}</p>

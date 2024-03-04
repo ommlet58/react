@@ -13,7 +13,7 @@ export const getPosts = (req, res) => {
     if (err) return res.status(403).json("Token is not vaild !");
 
     const q = userId !== "undefined"
-      ? "SELECT p.*, u.id AS userid, name , profilePic FROM posts AS p JOIN users AS u ON (u.id = p.userid) WHERE p.userid = ?"
+      ? "SELECT p.*, u.id AS userid, name , profilePic FROM posts AS p JOIN users AS u ON (u.id = p.userid) WHERE p.userid = ? ORDER BY p.createdAt DESC"
       : `SELECT p.*, u.id AS userid, name , profilePic FROM posts AS p JOIN users AS u ON (u.id = p.userid) LEFT JOIN relashionships As r ON  (p.userid = r.followedUserId ) WHERE r.followerUserId = ? OR p.userid = ? ORDER BY p.createdAt DESC`;
 
 
@@ -45,6 +45,28 @@ export const addPost = (req, res) => {
     db.query(q, [values], (err, data) => {
       if (err) return res.status(500).json(err);
       return res.status(200).json("post has been created");
+    });
+  });
+};
+
+
+export const deletePost = (req, res) => {
+  const token = req.cookies.accessToken;
+
+  if (!token) return res.status(401).json("Not logged in!");
+
+  jwt.verify(token, "secretkey", (err, userInfo) => {
+    if (err) return res.status(403).json("Token is not vaild !");
+
+    const q =
+      "DELETE FROM posts WHERE `id` = ? AND `userid` = (?)";
+
+   
+
+    db.query(q, [req.params.id, userInfo.id], (err, data) => {
+      if (err) return res.status(500).json(err);
+      if(data.affectedRows>0) return res.status(200).json("post has been deleted");
+    return res.status(403).json("You can delete only your post")
     });
   });
 };

@@ -4,13 +4,13 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 import { PaperClipIcon } from "@heroicons/react/24/solid";
 import { PaperAirplaneIcon } from "@heroicons/react/24/solid";
 
+// ...
+
 const StandarMessageForm = ({ props, activeChat }) => {
   const [message, setMessage] = useState("");
   const [attachement, setAttachement] = useState("");
   const [preview, setPreview] = useState("");
 
-  console.log(props);
-  console.log(activeChat);
   const handleChange = (e) => {
     setMessage(e.target.value);
   };
@@ -20,19 +20,21 @@ const StandarMessageForm = ({ props, activeChat }) => {
       .toISOString()
       .replace("T", " ")
       .replace("Z", `${Math.floor(Math.random() * 1000)}+00:00`);
-  
-    const at = attachement ? [{ blob: attachement , file:attachement.name}]:[];
+
+    const at = attachement ? [{ blob: attachement, file: attachement.name }] : [];
     const form = {
-      attachment : at,
-      created : date,
+      attachments: at,
+      created: date,
       sender_username: props.username,
-      text:message,
+      text: message,
       activeChatId: activeChat.id,
-    }
+    };
+
+    console.log("Form to submit:", form);
     props.onSubmit(form);
     setMessage("");
     setAttachement('');
-    };
+  };
 
   return (
     <div className="message-form-container">
@@ -42,7 +44,7 @@ const StandarMessageForm = ({ props, activeChat }) => {
             alt="message-form-preview"
             className="message-form-preview-image"
             src={preview}
-            onLoad={() => URL.revokeObjectURL(preview)}
+            onDrop={() => URL.revokeObjectURL(preview)}
           ></img>
           {
             <XMarkIcon
@@ -77,7 +79,7 @@ const StandarMessageForm = ({ props, activeChat }) => {
           >
             {({ getRootProps, getInputProps, open }) => (
               <div {...getRootProps()}>
-                <input {...getInputProps()}></input>
+                <input {...getInputProps()} />
                 <PaperClipIcon
                   className="message-form-icon-clip"
                   onClick={open}
@@ -85,6 +87,7 @@ const StandarMessageForm = ({ props, activeChat }) => {
               </div>
             )}
           </Dropzone>
+
           <hr className="vertical-line" />
           <PaperAirplaneIcon
             className="message-form-icon-airplane"
@@ -100,3 +103,4 @@ const StandarMessageForm = ({ props, activeChat }) => {
 };
 
 export default StandarMessageForm;
+

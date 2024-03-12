@@ -15,7 +15,7 @@ function Chat() {
 
 
   return <div style={{flexBasis: "100%" }}>
-    <MultiChatSocket {...chatProps}></MultiChatSocket>
+    <MultiChatSocket {...chatProps} />
     <MultiChatWindow
     {...chatProps}
     style={{height:"100vh"}}

@@ -4,6 +4,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
+import axios from 'axios';
+
+import openAiRoutes from "./routes/openai.js";
 
 /* config */
 
@@ -27,6 +30,11 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
 // Enable CORS for all routes
 app.use(cors());
+
+
+// Routes
+app.use('/openai', openAiRoutes)
+
 
 /* server setup */
 

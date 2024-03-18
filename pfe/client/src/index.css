@@ -46,7 +46,7 @@ body{
   
 }
 
-.nav-style  .active::before{
+.nav-style ::before{
   content: "";
   position: absolute;
   left:0;
@@ -58,14 +58,5 @@ body{
 }
 .nav-style .active::before{
   width: 100%;
-}
-
-
-@keyframes slideRight {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 100%;
-  }
+  right: 0;
 }

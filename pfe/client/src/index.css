@@ -10,6 +10,17 @@ body{
   margin: 0;
   badding:0;
 }
+
+.app{
+  margin: 0 auto;
+  width: 88%;
+}
+@media (max-width: 1700px) {
+  .app{
+    margin:0;
+    width: 100%;
+  }
+}
 .nav-style {
   font-family: "Poppins", sans-serif;
   font-weight: 300;
@@ -46,7 +57,7 @@ body{
   
 }
 
-.nav-style ::before{
+.nav-style a::before{
   content: "";
   position: absolute;
   left:0;
@@ -56,7 +67,12 @@ body{
   height: 4px;
   transition: width 0.4s ease-in-out;
 }
-.nav-style .active::before{
+.nav-style a.active::before  {
   width: 100%;
   right: 0;
+  
+}
+
+.nav-style a.active {
+  color: rgb(0, 125, 204);
 }

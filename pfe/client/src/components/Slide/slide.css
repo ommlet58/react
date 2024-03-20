@@ -1,0 +1,32 @@
+
+
+
+.slide-container{
+    display: flex;
+    flex-direction: column;
+    margin-left: 22px;
+    flex: 1; 
+    padding:10px 15px ;
+}
+
+img{
+max-width: 100%;
+height: auto;
+border-radius: 4%;
+}
+
+h1{
+    font-size: 30px;
+    line-height: 1.3em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--font-color);
+    text-transform: uppercase;
+}
+p{
+    font-weight: 400;
+    font-size: 20px;
+    color: rgb(144, 144, 144);
+    line-height: 2rem;
+}
+

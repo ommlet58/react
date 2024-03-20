@@ -4,7 +4,7 @@ import { NavLink, Outlet } from "react-router-dom";
 function NavBar() {
   return (
     <>
-      <nav className="nav-style">
+      <nav className="nav-style ">
         <ul>
           <li className="">
             <NavLink

@@ -7,6 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Rental from './components/Booking/Rental';
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -18,7 +19,9 @@ const router = createBrowserRouter([
       },
       {
         path:"location",
-        element:<Location/>
+        element:      
+        <Location/>
+        
       },
       
     ]
@@ -30,10 +33,15 @@ const router = createBrowserRouter([
 
 function App() {
   return (
+
     <div className='app'>
      
-     <RouterProvider router={router} />
+     
+        <RouterProvider router={router} />
+      
+
     </div>
+
   );
 }
 

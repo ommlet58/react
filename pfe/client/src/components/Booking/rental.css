@@ -1,0 +1,22 @@
+.guest{
+    display: flex;
+    gap: 20px;
+}
+
+.dropdown{
+    max-width: 300px;
+}
+
+.dropdown ul li{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    justify-content: space-between;
+}
+
+.groups{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}

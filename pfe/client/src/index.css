@@ -3,6 +3,8 @@
 
 :root {
   --font-color: rgb(78, 78, 78);
+  --secandary-font-color:rgb(144, 144, 144);
+  --main-font:"Poppins", sans-serif;
 }
 
 body{

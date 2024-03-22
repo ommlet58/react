@@ -1,0 +1,33 @@
+.tbox{
+    max-width: 300px;
+    border: solid 1px rgb(144, 144, 144);
+    padding-right: 20px;
+    border-radius: 5px;
+    
+}
+.tbox ul{
+    font-weight: 400;
+    font-size: 20px;
+    color: black;
+    line-height: 2rem;
+}
+
+.tbox ul li{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    justify-content: space-between;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
+}
+
+.tbox ul li:nth-child(5) {
+    border-top:solid 1px black ;
+    border-bottom:solid 1px black ;
+    
+  }
+  .tbox ul li:last-of-type{
+    font-weight: bold;
+  }

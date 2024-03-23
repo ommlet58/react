@@ -5,6 +5,8 @@
   --font-color: rgb(78, 78, 78);
   --secandary-font-color:rgb(144, 144, 144);
   --main-font:"Poppins", sans-serif;
+  --button-color:rgb(193, 155, 118);
+
 }
 
 body{
@@ -13,6 +15,9 @@ body{
   badding:0;
   font-family: "Poppins", sans-serif;
 
+}
+ul li {
+  list-style: none;
 }
 
 .app{

@@ -11,7 +11,7 @@ import "../Booking/rental.css";
 import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
 import Tbox from "./Tbox";
 import Datebox from "./Datebox";
-
+import Groupsurf from "./Groupsurf";
 const styles = {
   width: 300,
   marginBottom: 10,
@@ -182,6 +182,7 @@ const handleCloseDate= ()=>{
       ) : (
         ""
       )}
+      <Groupsurf />
     </div>
   );
 }

@@ -15,7 +15,7 @@ function Tbox({ values, dates, onClick, handleOpenDate,upgrades  }) {
   
 
 
-  return (
+  return ( 
     <div className="tbox">
       {values ? (
         <>

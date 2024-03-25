@@ -12,6 +12,9 @@ import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
 import Tbox from "./Tbox";
 import Datebox from "./Datebox";
 import Groupsurf from "./Groupsurf";
+import Form from "./Form";
+import imag from "../../assets/wetsuit.PNG";
+
 const styles = {
   width: 300,
   marginBottom: 10,
@@ -27,6 +30,20 @@ function Rental() {
   const [content, setContent] = useState("none");
   const [isOpen, setIsOpen] = useState(false);
   const [upgrades, setUpgrades] = useState(0);
+  const [formData, setFormData] = useState(Array.from({length :values},()=>({
+  })));
+
+const updateFormData=(index,newData)=>{
+  setFormData((prvData)=>{
+    const updatedData = [...prvData];
+    updatedData[index]=newData;
+    return updatedData;
+
+  })
+}
+
+
+
   const boxRef = useRef(null);
   useEffect(() => {
     function handleClickOutside(event) {
@@ -38,7 +55,7 @@ function Rental() {
     // Add event listener when the box is enabled
     if (content === "block") {
       document.addEventListener("mousedown", handleClickOutside);
-    } else {
+      } else {
       // Remove event listener when the box is disabled
       document.removeEventListener("mousedown", handleClickOutside);
     }
@@ -183,6 +200,14 @@ const handleCloseDate= ()=>{
         ""
       )}
       <Groupsurf />
+      <div className="forms">
+      {[...Array(values)].map((_,i)=>(
+        <Form key={i} updateFormData={updateFormData} formData={formData} i={i}></Form>
+        
+        ))}
+        
+        </div>
+       
     </div>
   );
 }

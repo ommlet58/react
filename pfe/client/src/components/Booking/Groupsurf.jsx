@@ -6,7 +6,11 @@ import "../Booking/groupsurf.css";
 import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 
-
+const arry = [
+  { day: 'Mon 15 Apr', board: 'day epoxy board rental + wetsuit', sold: '25' },
+  { day: 'Tue 16 Apr', board: 'day soft top rental + wetsuit', sold: '25' },
+  { day: 'Wed 17 Apr', board: 'day soft top rental + wetsuit', sold: '25' }
+];
 
 
 function Groupsurf() {
@@ -97,5 +101,8 @@ function Groupsurf() {
     </>
   );
 }
+
+
+
 
 export default Groupsurf;

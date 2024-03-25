@@ -1,0 +1,48 @@
+
+h3{
+    color:var(--font-color);
+    font-family:var(--main-font ) ;
+}
+.guest-form{
+    max-width: 50%;
+}
+
+.guest-form input{
+    display: block;
+    width: 500px;
+    height: 30px;
+    border-radius: 5px ;
+    border: 1px solid #ccc;
+    padding: 8px;
+    font-size: 16px;
+    font-family: var(--main-font);
+
+}
+.guest-form input:focus{
+
+    border-color: var(--button-color);
+    outline: none;
+}
+.guest-form label{
+    font-family: var(--main-font);
+    color: var(--font-color);
+    font-size: 16px;
+    display: block;
+    font-weight: 500;
+    margin-top: 20px;
+
+}
+
+.guest-form select {
+    width: 500px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    height: 50px; 
+  }
+  .guest-form select:focus{
+
+    border-color: var(--button-color);
+    outline: none;
+}

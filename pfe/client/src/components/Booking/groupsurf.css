@@ -57,3 +57,27 @@ font-size: 46px;
     cursor: pointer;
     display: block;
 }
+
+/* ------------rente Boox-----------*/
+
+.rentbox{
+    display: flex;
+}
+.rentbox img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.rentBoardsBox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 400px;
+}
+.rentBoardsBox img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+
+
+}

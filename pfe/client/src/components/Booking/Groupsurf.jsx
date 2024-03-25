@@ -96,13 +96,57 @@ function Groupsurf() {
           available by request. Please get in touch with us!
         </p>
       </div>}
+        <RentBoards></RentBoards>
       {isActive?<span className="show" onClick={()=> setIsActive(false)}>Show Less  <IoIosArrowUp /></span>
      :<span className="show" onClick={()=>setIsActive(true)} >Show More<IoIosArrowDown /></span>}
     </>
   );
 }
 
+function RentBoards(){
+  
+  return (
+  <div >
+    <div className="rentbox">
+      <img src={surf0} alt="" />
+      <div>
+        <h1>Surf Rentals</h1>
+        <p>30 Mar 2024 - 5 Apr 2024</p>
+      </div>
+    </div>
+      {arry.map((obj,index)=>(
+        <RentBoardsBox obj={obj} key={index}></RentBoardsBox>
+      ))}
+    <div>
 
+    </div>
+  </div>  
+  )
+}
 
+function RentBoardsBox ({obj}){
+  var imgBoard ;
+  
+  if(obj.board==="day epoxy board rental + wetsuit"){
+    imgBoard = surf0;
+
+}else if(obj.board==='day soft top rental + wetsuit'){
+   imgBoard = surf1;
+  
+}else{
+   imgBoard = surf2;
+
+ }
+  return(
+    <div className="rentBoardsBox">
+      <img src={imgBoard} alt="img"></img>
+      <div>
+        <h1>{obj.board}</h1>
+        <p>{obj.day}</p>
+      </div>
+      <div>{obj.sold}$</div>
+    </div>
+  )
+}
 
 export default Groupsurf;

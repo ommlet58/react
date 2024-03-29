@@ -14,6 +14,7 @@ import Datebox from "./Datebox";
 import Groupsurf from "./Groupsurf";
 import Form from "./Form";
 import imag from "../../assets/wetsuit.PNG";
+import TopBar from "./TopBar";
 
 const styles = {
   width: 300,
@@ -108,6 +109,7 @@ const handleCloseDate= ()=>{
 }
   return (
     <div>
+      <TopBar></TopBar>
       <div className={`guest ${content === "block" ? "after-visible" : ""}`}>
         <InputGroup style={styles} onClick={dropdown}>
           <InputGroup.Addon>

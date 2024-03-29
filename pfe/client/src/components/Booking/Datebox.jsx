@@ -115,7 +115,7 @@ function Inputs({ days, setUpgrades, upgrades, hundleDetails, detail, index }) {
   const hundleChange = (e)=>{
     const { name,id , value } = e.target;
     hundleDetails( { ...detail[index], day: name, board: id , sold: value},index);
-    console.log(index)
+    
 
     setUpgrades(upgrades + Number(value) - nm);
     setNm(Number(value));

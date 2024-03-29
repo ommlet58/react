@@ -1,0 +1,62 @@
+.topbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+    border-top: solid 1px blue;
+    border-bottom: solid 1px blue;
+    
+}
+.topbar .Logo img{
+    width: 100px;
+    
+}
+.topbar .Logo{
+    margin: 0;
+    padding: 0;
+}
+
+.lang-curr{
+    display: flex;
+    justify-content: space-between;
+}
+.topbar p {
+        font-size: 14px;
+        margin: 0;
+        padding: 0;
+    }
+.topbar ul {
+        margin: 0;
+        padding: 0;
+        border: 1px solid rgb(18, 125, 183);
+        position: absolute;
+        background-color: white;
+    }
+
+.topbar .lang-curr img{
+    width: 34px;
+    padding-right: 4px;
+}
+.topbar ul li {
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+.euro{
+    font-size:18px;
+    cursor: pointer;
+    padding-right: 15px;
+}
+.eng:hover{
+    cursor: pointer;
+    background-color: rgba(161, 160, 160, 0.31);
+}
+.euro:hover{ 
+    cursor: pointer;
+    background-color: rgba(161, 160, 160, 0.31);
+}
+
+
+.topbar ul li:hover {
+    background-color: rgba(161, 160, 160, 0.31);
+    cursor: pointer;
+}

@@ -7,10 +7,11 @@
     max-width: 300px;
     border: solid 1px rgb(144, 144, 144);
     padding-right: 20px;
-    position: relative;
-    top: 12px;
+    position: absolute;
+    top: 199px;
     border-radius: 5px;
     display: none;
+    background-color: white;
     
 }
 .dropdown ul{
@@ -70,3 +71,8 @@
     gap: 50px;
     flex-wrap: wrap;
 }
+.guest-bar{
+    background-color: rgba(128, 128, 128, 0.286);
+    padding:10px 0px ;
+}
+

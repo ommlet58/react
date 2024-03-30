@@ -53,7 +53,7 @@ function Tbox({ values, dates, onClick, handleOpenDate,upgrades  }) {
           </ul>
         </>
       ) : (
-        <button onClick={onClick}>Select Guest</button>
+        <button onClick={onClick} className="guestselect">Select Guest</button>
       )}
     </div>
   );

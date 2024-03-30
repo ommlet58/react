@@ -5,6 +5,7 @@
     gap: 30px;
     max-width: 1208px;
     height: 500px;
+    
 }
 .group-img{
     display: grid;
@@ -56,6 +57,7 @@ font-size: 46px;
     margin-top: 50px;
     cursor: pointer;
     display: block;
+    margin-bottom: 30px;
 }
 
 /* ------------rente Boox-----------*/

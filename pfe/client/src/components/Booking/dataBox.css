@@ -4,6 +4,7 @@
     align-items: center;
     font-family: var(--main-font);
     
+    
 }
 .box img{
     max-width: 100px;
@@ -42,6 +43,7 @@ width: fit-content;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    
 }
 
 .checklist p{

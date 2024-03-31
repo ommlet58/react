@@ -38,7 +38,7 @@ function Rental() {
   const [isOpen, setIsOpen] = useState(false);
   const [upgrades, setUpgrades] = useState(0);
   const [isActive, setIsActive] = useState(false);
-
+  const [next,setNext]=useState(1);
 
   
 
@@ -215,6 +215,8 @@ const handleCloseDate= ()=>{
         onClick={dropdown}
         handleOpenDate={handleOpenDate}
         upgrades={upgrades}
+        next={next}
+        setNext={setNext}
         />
         </div>
         </div>
@@ -258,7 +260,9 @@ const handleCloseDate= ()=>{
       {isActive?<span className="show" onClick={()=> setIsActive(false)}>Show Less  <IoIosArrowUp /></span>
             :<span className="show" onClick={()=>setIsActive(true)} >Show More<IoIosArrowDown /></span>}
         
-      {dates[0] !== null ? (
+      {
+      <div>
+     { (dates[0] !== null && next === 1) ? (
         <Datebox
           upgrades={upgrades}
           
@@ -268,15 +272,16 @@ const handleCloseDate= ()=>{
       ) : (
         ""
       )}
-      }
-      {/*<div className="forms">
-      {[...Array(values)].map((_,i)=>(
+      
+      {next === 2 ? <div className="forms">
+        {[...Array(values)].map((_,i)=>(
         <Form key={i} updateFormData={updateFormData} formData={formData} i={i}></Form>
         
         ))}
         
-      </div>*/}
-       
+      </div> : " "}
+    </div>   
+    }
     </div>
   );
 }

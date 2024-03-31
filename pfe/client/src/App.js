@@ -7,6 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Rental from './components/Booking/Rental';
+import LastStep from './components/Booking/LastStep';
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,11 @@ const router = createBrowserRouter([
   },{
     path:"/rental",
     element:<Rental></Rental>
+  },{
+    path:"/lastStep",
+    element:<LastStep></LastStep>
   }
+
 ]);
 
 function App() {

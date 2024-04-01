@@ -28,12 +28,12 @@ const router = createBrowserRouter([
     ]
   },{
     path:"/rental",
-    element:<Rental></Rental>
-  },{
+    element:<Rental></Rental>,
+  },
+  {
     path:"/lastStep",
     element:<LastStep></LastStep>
   }
-
 ]);
 
 function App() {

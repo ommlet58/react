@@ -27,6 +27,9 @@ import surf2 from "../../assets/store.png";
     
   };
 
+
+
+
 const { beforeToday } = DateRangePicker;
 function Rental() {
   const [dates, setDates] = useState([null, null]);
@@ -39,12 +42,22 @@ function Rental() {
   const [upgrades, setUpgrades] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [next,setNext]=useState(1);
+  const [detailToSend,setDetailToSend]=useState(null);
+  const [formData, setFormData] = useState(Array.from({length :values},(_,i)=>({
+    [`firstName-${i}`]: "",
+    [`lastname-${i}`]: "",
 
-  
-
-  const [formData, setFormData] = useState(Array.from({length :values},()=>({
   })));
 
+  useEffect(()=>{
+setFormData(Array.from({length :values},(_,i)=>({
+  [`firstName-${i}`]: "",
+  [`lastname-${i}`]: "",
+
+})))
+  },[values])
+
+console.log(formData)
 const updateFormData=(index,newData)=>{
   setFormData((prvData)=>{
     const updatedData = [...prvData];
@@ -217,6 +230,8 @@ const handleCloseDate= ()=>{
         upgrades={upgrades}
         next={next}
         setNext={setNext}
+        formData={formData}
+        detailToSend={detailToSend}
         />
         </div>
         </div>
@@ -265,7 +280,7 @@ const handleCloseDate= ()=>{
      { (dates[0] !== null && next === 1) ? (
         <Datebox
           upgrades={upgrades}
-          
+          setDetailToSend={setDetailToSend}
           setUpgrades={setUpgrades}
           dates={dates}
         ></Datebox>

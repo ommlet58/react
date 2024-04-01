@@ -1,8 +1,18 @@
 import React from "react";
 import "../Booking/tbox.css";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function Tbox({ values, dates, onClick, handleOpenDate,upgrades,setNext,next  }) {
+function Tbox({
+  values,
+  dates,
+  onClick,
+  handleOpenDate,
+  upgrades,
+  setNext,
+  next,
+  detailToSend,
+  formData,
+}) {
   var durationInDays = 0;
 
   if (dates[0]) {
@@ -10,13 +20,10 @@ function Tbox({ values, dates, onClick, handleOpenDate,upgrades,setNext,next  })
       dates[1].getTime() - dates[0].getTime()
     );
     durationInDays = durationInMilliseconds / (1000 * 60 * 60 * 24);
-
   }
+  const navigate = useNavigate();
 
-  
-
-
-  return ( 
+  return (
     <div className="tbox">
       {values ? (
         <>
@@ -49,13 +56,22 @@ function Tbox({ values, dates, onClick, handleOpenDate,upgrades,setNext,next  })
             </li>
             <li>
               <span>Total</span>
-              <span>{upgrades*values}€</span>
+              <span>{upgrades * values}€</span>
             </li>
-          {next<2 ? <button onClick={()=>setNext(next+1)} >Continue</button> : <Link to="/lastStep"> <button >Submit</button> </Link> }
+            {next < 2 ? (
+              <button onClick={() => setNext(next + 1)}>Continue</button>
+            ) : (
+              
+                
+                <button onClick={()=>{navigate('/laststep',{state:{formData , details : detailToSend}})}}>Submit</button>
+              
+            )}
           </ul>
         </>
       ) : (
-        <button onClick={onClick} className="guestselect">Select Guest</button>
+        <button onClick={onClick} className="guestselect">
+          Select Guest
+        </button>
       )}
     </div>
   );

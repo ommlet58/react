@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import imag from "../../assets/wetsuit.PNG";
 import "../Booking/dataBox.css";
 
@@ -36,7 +36,7 @@ const getDatesBetween = (startDate, endDate) => {
   return dates;
 };
 
-function Datebox({ dates, upgrades, setUpgrades }) {
+function Datebox({ dates, upgrades, setUpgrades,setDetailToSend }) {
   // Define the start and end dates
   const startDate = new Date(dates[0]);
   const endDate = new Date(dates[1]);
@@ -54,35 +54,38 @@ function Datebox({ dates, upgrades, setUpgrades }) {
     });
   };
   
- 
+  useEffect(()=>{
+   setDetailToSend(detail);
+
+ },[detail])
   
 
   return (
     <div className="box-container">
       <div className="left">
         <div className="box">
-          <img src={imag}></img>
+          <img src={imag} alt=""></img>
           <div className="text-box">
             <h1>1 day soft top rental + wetsuit</h1>
             <p>€20 / person</p>
           </div>
         </div>
         <div className="box">
-          <img src={imag}></img>
+          <img src={imag} alt=""></img>
           <div className="text-box">
             <h1>1 day epoxy board rental + wetsuit</h1>
             <p>€20 / person</p>
           </div>
         </div>
         <div className="box">
-          <img src={imag}></img>
+          <img src={imag} alt=""></img>
           <div className="text-box">
             <h1>1 day epoxy board rental</h1>
             <p>€20 / person</p>
           </div>
         </div>
         <div className="box">
-          <img src={imag}></img>
+          <img src={imag} alt=""></img>
           <div className="text-box">
             <h1>1 day soft top rental</h1>
             <p>€20 / person</p>
@@ -123,7 +126,6 @@ function Inputs({ days, setUpgrades, upgrades, hundleDetails, detail, index }) {
     
     
   }
-  console.log(detail)
   
 
   return (

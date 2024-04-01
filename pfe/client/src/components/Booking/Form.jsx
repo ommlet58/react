@@ -12,6 +12,7 @@ function Form({ i, updateFormData, formData }) {
     setShowTooltip2(false);
   };
   
+  console.log(formData)
   
   const handleMouseLeaveName = () => {
     if ( formData[i][`firstName-${i}`] === '') {
@@ -28,7 +29,7 @@ function Form({ i, updateFormData, formData }) {
 
   return (
     <>
-      <form className="guest-form">
+      <div className="guest-form">
         <h3>Guest{i + 1}</h3>
         <label htmlFor={`firstName-${i}`}>First Name:</label>
         <input
@@ -47,7 +48,7 @@ function Form({ i, updateFormData, formData }) {
           type="text"
           id={`lastname-${i}`}
           name={`lastname-${i}`}
-          value={formData.lastName}
+          value={formData.lastname}
           onChange={hundleChangeInput}
           onMouseLeave={handleMouseLeaveLastName}
           required
@@ -69,7 +70,7 @@ function Form({ i, updateFormData, formData }) {
           <option value="KB">Kids - Beginner</option>
           <option value="KI">Kids - Intermediate</option>
         </select>
-      </form>
+      </div>
     </>
   );
 }

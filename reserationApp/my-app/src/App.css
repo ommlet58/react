@@ -6,12 +6,22 @@ body{
 ul{
   list-style: none;
 }
+
+.mainpage{
+  display: flex;
+}
 .sidebar{
   max-width: 30vh;
   background-color: aquamarine;
-  height: 100vh;
+  min-height: 100vh;
 }
 
+.sidebar img{
+  width: 300px;
+  margin: 0;
+  padding: 0;
+  height: 200px;
+}
 .sidebar h1{
   font-weight: bold;
   font-size: 25px;
@@ -19,6 +29,46 @@ ul{
 .sidebar .myNavLink {
   display: flex;
   align-items: center;
-  margin: 10px;
-  background-color: red;
+  margin: 10px;  
+}
+.sidebar li{
+  padding: 10px 20px;
+  font-size: 20px;
+  border-bottom: solid 1px black;
+}
+/*restaurant*/
+
+.resturant{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px;
+}
+
+/*shopfront*/
+
+.shopfront{
+  max-width: 400px;
+    height:fit-content;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    font-family: "Roboto", sans-serif;
+}
+.shopfront img{
+  height: 250px;
+}
+
+.shopfront h1{
+  font-weight: bold;
+  font-size: 26px;
+}
+.visiteBtn{
+  font-weight: bold;
+  font-size: 26px;
+  background-color: rgb(193, 155, 118);
+  color: white;
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 10px;
 }

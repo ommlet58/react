@@ -18,7 +18,7 @@ import { NavLink, Outlet } from "react-router-dom";
 
 function SideBar() {
   return (
-    <div>
+    <div className="mainpage">
     <div className="sidebar">
       <NavLink>
         <img src={logo} alt="logo"></img>
@@ -27,7 +27,7 @@ function SideBar() {
       <h1>FOOD</h1>
       <ul>
         <li>
-          <NavLink className="myNavLink">
+          <NavLink className="myNavLink" to="/restaurant">
             <IoRestaurant />
             <span>Restaurant</span>
           </NavLink>

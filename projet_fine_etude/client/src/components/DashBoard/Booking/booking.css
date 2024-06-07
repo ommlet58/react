@@ -1,0 +1,32 @@
+.booking {
+    background-color: #FFFAE6; /* Light yellow */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding shadow for depth */
+  }
+  
+  .booking h2 {
+    color: rgb(0, 35, 121); /* Dark blue */
+  }
+  
+  .booking table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .booking th, .booking td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Light border */
+  }
+  
+  .booking th {
+    background-color: #FF9F66; /* Orange */
+    color: #fff;
+  }
+  
+  .booking tbody tr:nth-child(even) {
+    background-color: rgba(255, 95, 0, 0.1); /* Light orange */
+  }
+  

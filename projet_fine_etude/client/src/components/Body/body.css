@@ -1,0 +1,64 @@
+.icons {
+  display: flex;
+  gap: 70px;  
+  transition: all 0.3s ease;
+  color: gray;
+  
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  border-radius: 10px;
+}
+.icons p{
+    color: gray;
+}
+.body {
+    margin: 0 auto;
+    width: 90%;
+  }
+.main-icon {
+  font-size: 40px;
+  color: gray;
+}
+.icon-block {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  align-items: center;
+  position: relative;
+}
+.icon-block:hover {
+  color: black;
+}
+.icon-block:hover::after {
+  background-color: gray;
+}
+
+.icon-block:hover .main-icon
+{
+  color: black;
+}
+.icon-block::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.icon-block:hover::after
+ {
+  background-color: gray;
+}
+
+.my-nav.active .main-icon,
+.my-nav.active  p{
+    color: red;
+    font-weight:500;
+}
+.container{
+    margin: 20px auto;
+}

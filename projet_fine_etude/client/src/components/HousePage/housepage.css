@@ -1,0 +1,163 @@
+.image-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 10px;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+     
+
+  }
+  
+  .mainimg {
+    grid-column: 1 / 2;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  .mainimg img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    
+  }
+  
+  .sideimages {
+    grid-column: 2 / -1;
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    gap: 5px;
+    margin: 0;
+    padding: 0;
+    border-radius: 10px;
+  }
+  
+  .sideimages img {
+    flex-basis: calc(50% - 5px); /* Set width for each image to occupy half the container width minus the gap */
+    height: 200px; /* Maintain aspect ratio */
+    height: 250px;
+    border-radius: 10px;
+  }
+  .housePage-adress {
+    
+    padding: 10px; /* Add some padding */
+    border-radius: 5px; /* Rounded corners */
+    display: flex;
+    justify-content: space-between;
+  }
+  .housePage-adress button{
+    width: 150px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: orange;
+    color: aliceblue;
+    border: white;    
+    cursor: pointer;
+  }
+  
+  .housePage-adress h2 {
+    margin: 0 0 5px 0; /* Remove default margin and add some space below */
+    font-size: 25px; /* Larger font size for the title */
+  }
+  
+  .housePage-adress p {
+    margin: 0; 
+    font-size: 20px; 
+  }
+  
+  .info-resrvation {
+    background-color: #f9f9f9; /* Light background color */
+    padding: 20px; /* Add some padding */
+    border-radius: 10px; /* Rounded corners */
+  }
+  
+  .info-resrvation .left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .info-resrvation h2 {
+    margin: 0 0 10px 0; /* Remove default margin and add some space below */
+    font-size: 20px; /* Larger font size for the title */
+  }
+  
+  .info-resrvation hr {
+    border: 0; /* Remove default border */
+    border-top: 1px solid #ddd; /* Add a horizontal line */
+    margin: 10px 0; /* Add some space above and below the horizontal line */
+  }
+  
+  .info-text {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Add some space below each info-text */
+    gap: 10px;
+  }
+  
+  
+  .info-text svg {
+    width: 40px; /* Set width for the icon */
+    height: 40px; /* Set height for the icon */
+    margin-right: 10px; /* Add some space between the icon and text */
+  }
+  
+  .info-text > div {
+    flex-grow: 1; /* Expand the nested div to fill remaining space */
+  }
+  
+  .info-text h1 {
+    font-size: 20px; /* Font size for the title */
+    margin: 0; /* Remove default margin */
+  }
+  
+  .info-text p {
+    font-size: 18px; /* Font size for the paragraph */
+    margin: 5px 0 0 0; 
+  }
+  
+  .discription {
+    margin-top: 20px;
+    width: 50%;  }
+  
+  .discription hr {
+    border: 0; /* Remove default border */
+    border-top: 1px solid #ddd; /* Add a horizontal line */
+    margin: 20px 0; /* Add some space above and below the horizontal line */
+  }
+  
+  .discription p {
+    margin: 0; /* Remove default margin */
+    font-size: 20px; /* Font size for the paragraph */
+    line-height: 1.5; /* Line height for better readability */
+  }
+  .offer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 80%;
+  }
+  
+  .offerbox {
+    flex: 1 1 calc(50% - 10px); /* Each box takes up 50% of the container width minus the gap */
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    
+  }
+  
+  .offerbox svg {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  
+  .offerbox p {
+    margin: 0;
+    font-size: 16px;
+  }
+  

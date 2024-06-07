@@ -1,0 +1,78 @@
+/* Styles for reservation form */
+.resservation-form {
+  width: 1000px; /* Set width of the form */
+  height: auto; 
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.resservation-form  .form-group {
+  margin-bottom: 20px;
+}
+.resservation-form h2{
+  text-align: center;
+}
+.resservation-form  .form-group label {
+  display: block;
+  font-weight: bold;
+}
+
+.resservation-form  input[type="text"],
+.resservation-form  input[type="email"],
+.resservation-form  input[type="tel"],
+.resservation-form  input[type="date"] {
+  width: calc(100% - 40px); /* Set width of input fields */
+  height: 40px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.resservation-form button {
+  width: 100%;
+  height: 60px;
+  padding: 10px;
+  background-color: orange;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; 
+  font-weight: bold;
+  font-size: 20px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+.dropdown-message {
+  position: fixed;
+  top: 1%;
+  right: 20px;
+  background-color: #4caf50;
+  color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+.dropdown-message p {
+  margin-bottom: 10px;
+}
+
+.dropdown-message button {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-message button:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,58 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sedan+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sedan+SC&display=swap');
+
+.restaurant-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.rest-box{
+    cursor: pointer;
+    line-height: 20px;
+    color: rgb(34, 34, 34);
+    position: relative;
+   
+}
+.rest-box img{
+    width: 100%;
+    height: 300px;
+    border-radius: 15px;
+}
+.text-box{
+    position: absolute;
+  bottom: 5px;
+  left: 0;
+  color: wheat;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 5px;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  width: calc(100% - 20px);
+  max-width: calc(100% - 20px);
+  font-family: "Roboto Mono", monospace;
+
+    
+}
+.rest-box h1{
+    font-weight: 500;
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+    font-family: "Sedan SC", serif;
+    color: white;
+  
+}
+.rest-box p {
+    margin: 1px;
+    font-size: 16px;
+}
+.name{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -1,0 +1,76 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-family);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+a{
+    text-decoration: none;
+}
+img{
+    width: 200px;
+}
+.what{
+    position: relative;
+}
+.what::before{
+    content: "";
+    width: 0.1px;
+    height: 115%;
+    background-color: #766c6c62;
+    position: absolute;
+    top: 50%; 
+    transform: translateY(-50%); 
+    right: 60px;
+  }
+.search {
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 650px;
+    align-items: center;
+    box-shadow: 1px 1px 17px 2px rgba(0,0,0,0.32);
+  }
+  .search-button{
+    background-color: red;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  }
+ 
+.srch-icon{
+    color: white;
+    font-size: 30px;
+    
+}
+
+
+.login-side{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.addbusiness{
+    display: flex;   
+    align-items: center;
+}
+
+.addbusiness p{
+    padding-left: 10px;
+}
+
+.logicon{
+    font-size: 40px;
+}
+

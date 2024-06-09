@@ -84,3 +84,24 @@ export const getHouseBooking = (req , res )=>{
   })
 
 }
+
+
+export const  getHouseBookingToday = (req,res) =>{
+
+  const userId = req.params.userId;
+  const query = "SELECT count(checkIn) AS bookingCount FROM `housebooking` WHERE `userId` = 17 and DATE(checkIn) = CURDATE()";
+
+  db.query(query, [userId], (err, data) => {
+    if (err) {
+      console.error('Database error:', err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+
+    if (data.length === 0) {
+      return res.status(404).json({ message: 'House information not found' });
+    }
+
+    return res.json({ bookingCount: data[0].bookingCount });
+
+  });
+}

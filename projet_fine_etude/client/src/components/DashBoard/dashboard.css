@@ -1,0 +1,37 @@
+
+.dashb{
+    display: flex;
+    gap: 20px;
+    
+}
+.dashb .numbers{
+   margin: 20px;
+    
+}
+
+.dashb .numbers .numberbox {
+    padding: 20px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    text-align: center;
+    
+}
+
+
+.dashb .charts {
+    display: flex;
+gap: 20px;
+justify-content: space-evenly;
+
+}
+
+.dashb .charts .lineShart {
+   
+    width: 600px;
+    padding: 20px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

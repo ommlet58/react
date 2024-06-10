@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext , useRef } from 'react'
 import { Line } from 'react-chartjs-2';
 import { Bar } from 'react-chartjs-2';
 
@@ -7,7 +7,8 @@ import {makeRequest} from  "../../axios.js"
 import {useQuery } from '@tanstack/react-query'
 import moment from 'moment';
 
-
+import QRCode from "react-qr-code";
+import ReactToPrint from 'react-to-print';
 
 import "../DashBoard/dashboard.css"
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, BarElement } from 'chart.js';
@@ -20,7 +21,7 @@ function DashBoard() {
   
   const {currentUser}= useContext(AuthContext);
   const userId=currentUser.userId;
-
+  const componentRef = useRef();
 
 
   const { isLoading, error, data } = useQuery({
@@ -30,6 +31,19 @@ function DashBoard() {
         const response = await makeRequest.get(`house/getHouseBookingToday/${userId}`);
         
         return response.data.bookingCount;
+      } catch (error) {
+        throw error;
+      }
+    },
+  });
+
+  const { monthLoading, err, datacount } = useQuery({
+    queryKey: ['bookingMonth', userId],
+    queryFn: async () => {
+      try {
+        const response = await makeRequest.get(`house/getHouseBookingMonth/${userId}`);
+        
+        return response.datacount.monthCount;
       } catch (error) {
         throw error;
       }
@@ -102,7 +116,9 @@ function DashBoard() {
       },
     },
   };
-
+ if(!monthLoading){
+  console.log(datacount.monthCount)
+ }
 
   return (
     <div>
@@ -113,15 +129,29 @@ function DashBoard() {
       <div className='numberbox'>
         
       <h1>{
-        isLoading? "0" : data.bookingCount }</h1>
+        isLoading ?  "0" : data.bookingCount ? data.bookingCount: "0"  }</h1>
       <p> reservation today</p>
       </div>
       <div className='numberbox'>
-        <h1>10</h1>
+        <h1>{/*monthLoading ? "0" : datacount.monthCount ? datacount.monthCount : "0"*/}</h1>
       <p> reservation this month</p>
       </div>
       <div className='numberbox'>
       <h1>25</h1> <p>reseration this Year</p>
+      </div>
+      <div className="numberbox" ref={componentRef}>
+      <ReactToPrint
+        trigger={() => 
+          <QRCode
+    size={256}
+    style={{ height: "auto", maxWidth: "100%", width: "100%" , cursor:"pointer" }}
+    value="youtube"
+    viewBox={`0 0 256 256`}
+  />
+        }
+        content={() => componentRef.current}
+      />
+      
       </div>
       </div>
     <div>
@@ -141,7 +171,7 @@ function DashBoard() {
     </div>
       
       </div>
-
+      
 
 
     </div>

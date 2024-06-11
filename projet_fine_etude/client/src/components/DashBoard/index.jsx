@@ -36,6 +36,10 @@ function DashBoard() {
     const response = await makeRequest.get(`house/getHouseBookingYear/${userId}`);
     return response.data.bookingCount;
   };
+  const fetchHouseBooking = async (userId) => {
+    const response = await makeRequest.get(`house/getHouseBooking/${userId}`);
+    return response.data;
+  };
 
   
 
@@ -55,12 +59,38 @@ const { isLoading: yearLoading, error: yearError, data: yearCount } = useQuery({
   queryFn: () => fetchBookingYear(userId),
 });
 
+const { isLoading: bookingLoading, error: bookingError, data: bookingInfo } = useQuery({
+  queryKey: ['bookinginfo', userId],
+  queryFn: () => fetchHouseBooking(userId),
+});
+
+
+const countCheckInsByMonth = (bookings) => {
+  const monthlyCounts = Array(12).fill(0); // Initialize an array with 12 zeros for each month
+
+  bookings.forEach((booking) => {
+    const checkInDate = new Date(booking.checkIn);
+    const month = checkInDate.getMonth(); // getMonth() returns 0-11
+    monthlyCounts[month]++;
+  });
+
+  return monthlyCounts;
+};
+
+let checkInCounts;
+if(!bookingLoading){
+   checkInCounts = countCheckInsByMonth(bookingInfo);
+  
+}
+
+
+
   const data1 = {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [
       {
         label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        data: checkInCounts ? checkInCounts :[12, 19, 3, 5, 2, 3],
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -100,7 +130,7 @@ const { isLoading: yearLoading, error: yearError, data: yearCount } = useQuery({
     datasets: [
       {
         label: 'Reservation per month',
-        data: [65, 59, 80, 81, 56, 55, 40],
+        data: checkInCounts ? checkInCounts :[12, 19, 3, 5, 2, 3],
         fill: false,
         backgroundColor: 'rgba(75,192,192,0.2)',
         borderColor: 'rgba(75,192,192,1)',
@@ -169,7 +199,7 @@ const { isLoading: yearLoading, error: yearError, data: yearCount } = useQuery({
       </div>
      
       <div>
-        <Booking></Booking>
+        <Booking isLoading={bookingLoading} error={bookingError} data={bookingInfo}></Booking>
       </div>
     </div>
       
@@ -193,25 +223,13 @@ export default DashBoard
 
 
 
-function Booking() {
+function Booking({isLoading, data , error}) {
 
-  const {currentUser}= useContext(AuthContext);
-  const userId=currentUser.userId;
 
   
 
 
-  const { isLoading, error, data } = useQuery({
-    queryKey: ['info'],
-    queryFn: async () => {
-      try {
-        const response = await makeRequest.get("house/getHouseBooking/"+userId);
-        return response.data;
-      } catch (error) {
-        throw error;
-      }
-    },
-  });
+
 
 
 

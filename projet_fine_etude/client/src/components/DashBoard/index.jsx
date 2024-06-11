@@ -23,33 +23,38 @@ function DashBoard() {
   const userId=currentUser.userId;
   const componentRef = useRef();
 
-
-  const { isLoading, error, data } = useQuery({
-    queryKey: ['bookingday', userId],
-    queryFn: async () => {
-      try {
-        const response = await makeRequest.get(`house/getHouseBookingToday/${userId}`);
-        
-        return response.data.bookingCount;
-      } catch (error) {
-        throw error;
-      }
-    },
-  });
-
-  const { monthLoading, err, datacount } = useQuery({
-    queryKey: ['bookingMonth', userId],
-    queryFn: async () => {
-      try {
-        const response = await makeRequest.get(`house/getHouseBookingMonth/${userId}`);
-        
-        return response.datacount.monthCount;
-      } catch (error) {
-        throw error;
-      }
-    },
-  });
   
+  const fetchBookingMonth = async (userId) => {
+    const response = await makeRequest.get(`house/getHouseBookingmonth/${userId}`);
+    return response.data.monthCount;
+  };
+  const fetchBookingDay = async (userId) => {
+    const response = await makeRequest.get(`house/getHouseBookingToday/${userId}`);
+    return response.data.bookingCount;
+  };
+  const fetchBookingYear = async (userId) => {
+    const response = await makeRequest.get(`house/getHouseBookingYear/${userId}`);
+    return response.data.bookingCount;
+  };
+
+  
+
+const { isLoading: monthLoading, error: monthError, data: monthCount } = useQuery({
+  queryKey: ['bookingMonth', userId],
+  queryFn: () => fetchBookingMonth(userId),
+});
+
+
+const { isLoading: dayLoading, error: dayError, data: dayCount } = useQuery({
+  queryKey: ['bookingDay', userId],
+  queryFn: () => fetchBookingDay(userId),
+});
+
+const { isLoading: yearLoading, error: yearError, data: yearCount } = useQuery({
+  queryKey: ['bookingYear', userId],
+  queryFn: () => fetchBookingYear(userId),
+});
+
   const data1 = {
     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
@@ -116,9 +121,7 @@ function DashBoard() {
       },
     },
   };
- if(!monthLoading){
-  console.log(datacount.monthCount)
- }
+ 
 
   return (
     <div>
@@ -129,15 +132,15 @@ function DashBoard() {
       <div className='numberbox'>
         
       <h1>{
-        isLoading ?  "0" : data.bookingCount ? data.bookingCount: "0"  }</h1>
+       dayLoading ?  "0" : dayCount ? dayCount: "0"  }</h1>
       <p> reservation today</p>
       </div>
       <div className='numberbox'>
-        <h1>{/*monthLoading ? "0" : datacount.monthCount ? datacount.monthCount : "0"*/}</h1>
+        <h1>{monthLoading ? "0" : monthCount ? monthCount : "0"}</h1>
       <p> reservation this month</p>
       </div>
       <div className='numberbox'>
-      <h1>25</h1> <p>reseration this Year</p>
+      <h1>{yearLoading ? "0" : yearCount ? yearCount : "0"}</h1> <p>reseration this Year</p>
       </div>
       <div className="numberbox" ref={componentRef}>
       <ReactToPrint

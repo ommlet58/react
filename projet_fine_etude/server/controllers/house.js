@@ -105,10 +105,11 @@ export const  getHouseBookingToday = (req,res) =>{
 
   });
 }
+
 export const  getHouseBookingmonth = (req,res) =>{
 
   const userId = req.params.userId;
-  const query = "SELECT count(checkIn) AS bookingCount FROM `housebooking` WHERE `userId` = ? and MONTH(checkIn) = MONTH(CURRENT_DATE()) AND YEAR(checkIn) = YEAR(CURRENT_DATE())";
+  const query = "SELECT count(checkIn) AS monthCount FROM `housebooking` WHERE `userId` = ? and MONTH(checkIn) = MONTH(CURRENT_DATE()) AND YEAR(checkIn) = YEAR(CURRENT_DATE())";
 
   db.query(query, [userId], (err, datacount) => {
     if (err) {
@@ -120,7 +121,27 @@ export const  getHouseBookingmonth = (req,res) =>{
       return res.status(404).json({ message: 'House information not found' });
     }
 
-    return res.json({ monthCount: datacount[0].bookingCount });
+    return res.json({ monthCount: datacount[0].monthCount });
+
+  });
+}
+
+export const  getHouseBookingYear = (req,res) =>{
+
+  const userId = req.params.userId;
+  const query = "SELECT count(checkIn) AS bookingCount FROM `housebooking` WHERE `userId` = ? AND YEAR(checkIn) = YEAR(CURRENT_DATE())";
+
+  db.query(query, [userId], (err, data) => {
+    if (err) {
+      console.error('Database error:', err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+
+    if (data.length === 0) {
+      return res.status(404).json({ message: 'House information not found' });
+    }
+
+    return res.json({ bookingCount: data[0].bookingCount });
 
   });
 }

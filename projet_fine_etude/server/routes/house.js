@@ -1,5 +1,5 @@
 import express from "express";
-import { addInfo ,getHouseInfo, getHouseBooking, getHouseBookingToday , getHouseBookingmonth} from "../controllers/house.js";
+import { addInfo ,getHouseInfo, getHouseBooking, getHouseBookingToday , getHouseBookingmonth, getHouseBookingYear} from "../controllers/house.js";
 
 
 
@@ -10,6 +10,7 @@ router.post("/addInfo",addInfo)
 router.get("/getHouseInfo/:userId",getHouseInfo)
 router.get("/getHouseBookingToday/:userId",getHouseBookingToday)
 router.get("/getHouseBookingmonth/:userId",getHouseBookingmonth)
+router.get("/getHouseBookingYear/:userId",getHouseBookingYear)
 
 
 

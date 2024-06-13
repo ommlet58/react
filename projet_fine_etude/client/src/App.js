@@ -3,6 +3,7 @@ import './App.css';
 import {
   createBrowserRouter,
   RouterProvider,
+  Navigate
 } from "react-router-dom";
 import Header from './components/Header';
 import Body from './components/Body';
@@ -32,94 +33,113 @@ import { useContext } from 'react';
 import HouseInfo from './components/DashBoard/HouseInfo/index.jsx';
 import Setting from './components/DashBoard/Setting';
 
+ 
 
 
 
 
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Body></Body>,  
-    children:[
-      {
-        path:"/houses",
-        element:<Houses></Houses>
-      },
-      {
-        path:"/restaurant",
-        element:<Restaurant></Restaurant>
-      },
-      {
-        path:"/grocery",
-        element:<Grocery></Grocery>
-      },
-      {
-        path:"/streetfood",
-        element:<Streetfood></Streetfood>
-      },
-      {
-        path:"/gym",
-        element:<Gym></Gym>
-      },
-      {
-        path:"/trasnportation",
-        element:<Trasnportation></Trasnportation>
-      },
-      {
-        path:"/tradespersons",
-        element:<Tradespersons></Tradespersons>
-      },
-      {
-        path:"/housepage",
-        element:<HousePage></HousePage>,
-      },
-      {
-        path:"/restauPage",
-        element:<RestauPage></RestauPage>
-      },
-      {
-        path:"/groceryShop",
-        element:<GroceryShop></GroceryShop>
-      },
-    ]  
-  },{
-    path:"/login",
-    element:<LoginPage></LoginPage>,
-  },
-  {
-    path:"/signup",
-    element:<SignUpPage></SignUpPage>,
-  },
-  {
-    
-    element:<SideBar></SideBar>,
-    children:[
-      {
-        path:'/dashboard',
-        element:<DashBoard></DashBoard>,
-      },
-      {
-        path:'/booking',
-        element:<Booking></Booking>,
-      },
-      {
-        path:'/houseinfo',
-        element:<HouseInfo></HouseInfo>,
-      },
-      {
-        path:'/houseSetting',
-        element:<Setting></Setting>,
-      },
-    ]
-  },
-])
 
 
 
 const queryClient = new QueryClient()
 function App() {
   const {currentUser} = useContext(AuthContext);
+
+
+
+  const ProtectedRoute = ({ children }) => {
+    if (!currentUser) {
+      return <Navigate to="/login" />;
+    }
+    
+
+    return children;
+  };
+
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Body></Body>,  
+      children:[
+        {
+          path:"/houses",
+          element:<Houses></Houses>
+        },
+        {
+          path:"/restaurant",
+          element:<Restaurant></Restaurant>
+        },
+        {
+          path:"/grocery",
+          element:<Grocery></Grocery>
+        },
+        {
+          path:"/streetfood",
+          element:<Streetfood></Streetfood>
+        },
+        {
+          path:"/gym",
+          element:<Gym></Gym>
+        },
+        {
+          path:"/trasnportation",
+          element:<Trasnportation></Trasnportation>
+        },
+        {
+          path:"/tradespersons",
+          element:<Tradespersons></Tradespersons>
+        },
+        {
+          path:"/housepage",
+          element:<HousePage></HousePage>,
+        },
+        {
+          path:"/restauPage",
+          element:<RestauPage></RestauPage>
+        },
+        {
+          path:"/groceryShop",
+          element:<GroceryShop></GroceryShop>
+        },
+      ]  
+    },{
+      path:"/login",
+      element:<LoginPage></LoginPage>,
+    },
+    {
+      path:"/signup",
+      element:<SignUpPage></SignUpPage>,
+    },
+    {
+      
+      element:
+      <ProtectedRoute>
+      <SideBar></SideBar>
+      </ProtectedRoute>,
+      children:[
+        {
+          path:'/dashboard',
+          element:<DashBoard></DashBoard>,
+        },
+        {
+          path:'/booking',
+          element:<Booking></Booking>,
+        },
+        {
+          path:'/houseinfo',
+          element:<HouseInfo></HouseInfo>,
+        },
+        {
+          path:'/houseSetting',
+          element:<Setting></Setting>,
+        },
+      ]
+    },
+  ])
+  
+
+
 
   return (
     <QueryClientProvider client={queryClient}>

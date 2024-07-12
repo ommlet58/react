@@ -33,6 +33,7 @@ function Header() {
     }
   };
 
+
   return (
     <div className="header">
       <img src={logo} alt="kolchi"></img>
@@ -114,7 +115,7 @@ function Header() {
           </div>
         </a>
         <div>
-          <a href="/restaurant">
+          <a href="/login">
             <p>Sign up</p>
           </a>
         </div>

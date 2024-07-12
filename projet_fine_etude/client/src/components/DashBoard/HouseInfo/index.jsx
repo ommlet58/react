@@ -30,6 +30,7 @@ function HouseInfo() {
     queryFn: async () => {
       try {
         const response = await makeRequest.get("/house/getHouseInfo/"+userId);
+        console.log(response.data)
         return response.data;
       } catch (error) {
         throw error;

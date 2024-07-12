@@ -6,6 +6,8 @@ import img3 from "../../assets/res3.jpeg"
 import img4 from "../../assets/res4jpeg.jpeg"
 import img5 from "../../assets/surfc.jpg"
 import Rating from '@mui/material/Rating';
+import { useNavigate } from 'react-router-dom';
+
 
 const resData=[
     {id:1,image:img1,name:"Choc chok",city:"agadir",adress:"Taghazot",rating:4,type:"Traditional"},
@@ -30,8 +32,16 @@ function Restaurant() {
 export default Restaurant
 
 function Resteau({image,name,city,adress,rating,type}){
+
+    const navigate = useNavigate();
+
+const navv = ()=>{
+  navigate(`/restauPage`);
+console.log("heee")}
+
+
     return(
-        <div className='rest-box'>
+        <div className='rest-box' onClick={navv} >
             <img src={image} alt="img"></img>
            <div className='text-box'>
            <div className='name'>

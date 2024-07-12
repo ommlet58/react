@@ -6,6 +6,8 @@ import img4 from "../../assets/003_Front_Porch.jpg"
 import img5 from "../../assets/R (1).jpeg"
 import "../Houses/house.css"
 
+import { useNavigate } from 'react-router-dom';
+
 const housedata=[
     {id:1,img:img1, contry:"Maroc",city:"Agadir",Adresse:"Taghazot",Price:500},
     {id:2,img:img2, contry:"Maroc",city:"Agadir",Adresse:"Tamraght",Price:400},
@@ -31,8 +33,14 @@ export default Houses
 
 
 function House({ image, country, city, Adresse, Price }){
+
+  const navigate = useNavigate();
+
+  const navv = ()=>{
+    navigate(`/housepage`);
+  }
     return(
-        <div  className='house'>
+        <div  className='house' onClick={navv}>
         <img src={image} alt="img"  ></img>
         <p>{country},{city}</p>
         <p className='addresse'>{Adresse}</p>

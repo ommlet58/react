@@ -45,7 +45,8 @@ const foodData = [
   },
 ];
 
-function RestauPage() {
+
+function RestauPage({ }) {
   const [showPanel, setShowPanel] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -55,6 +56,8 @@ function RestauPage() {
   const [openOrderForm, setOpenOrderForm]=useState(false);
   const [openResForm, setOpenResForm]=useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [order,setOrder]=useState([]);
+  const [price,setPrice]=useState(0);
 
   const handleCloseMessage = () => {
     setFormSubmitted(false);
@@ -91,11 +94,14 @@ function RestauPage() {
         <ImCross className="panele-croseicon" onClick={togglePanel}></ImCross>
       
         <div className="items">
-        <PanelItems></PanelItems>
-        <PanelItems></PanelItems>
+          {order.map((i,d)=>(
+            <PanelItems key={d} d={i}></PanelItems>
+
+          ))}
+        
         </div>
         <div className="panele-order">
-        <h2>Totale: 190Dh</h2>
+        <h2>Totale: {price}Dh</h2>
         <button onClick={()=>setOpenOrderForm(true)}>Order Now</button>
         </div>
       </div> 
@@ -179,7 +185,7 @@ function RestauPage() {
       </div>
       <div className="product-container">
         {foodData.map((item) => (
-          <MenuItem key={item.id} data={item}></MenuItem>
+          <MenuItem key={item.id} data={item} order={order} setOrder={setOrder} setPrice={setPrice} price={price} ></MenuItem>
         ))}
       </div>
     </div>
@@ -188,7 +194,27 @@ function RestauPage() {
 
 export default RestauPage;
 
-function MenuItem({ data }) {
+function MenuItem({ data , order ,setOrder , setPrice, price}) {
+  const [qnt,setQnt]=useState(0);
+ 
+  
+
+
+  const addToOrder = () => {
+    if (qnt > 0) {
+      const newItem = {
+        id: data.id,         
+        name: data.name,
+        price: data.price,
+        quantity: qnt,
+      };
+       setOrder([...order, newItem]);
+       setQnt(0);
+      console.log(order)
+      setPrice(price+data.price)
+    }
+  }
+
   return (
     <div className="menueItem">
       <div className="menue-top">
@@ -201,25 +227,26 @@ function MenuItem({ data }) {
       <p className="desc">{data.desc}</p>
       <div className="menueItem-info">
         <>
-          <FaCircleMinus className="icon" />
+          <FaCircleMinus className="icon" onClick={()=>setQnt(qnt-1)} />
         </>
-        <p>5</p>
+        <p>{qnt}</p>
         <>
-          <FaPlusCircle className="icon" />
+          <FaPlusCircle className="icon" onClick={()=>setQnt(qnt+1)} />
         </>
       </div>
-      <button>Add To Card</button>
+      <button onClick={addToOrder}  >Add To Card</button>
     </div>
   );
 }
 
-function PanelItems(){
+function PanelItems({d}){
+
   return(
     <div className="panelItem">
       <img src={img1} alt="am"></img>
       <div className="info">
-        <h2>Pizza x1</h2>
-        <p>price: 150 DH</p>
+        <h2>{d.name}</h2>
+        <p>price: {d.price} DH</p>
       </div>
     </div>
   )
